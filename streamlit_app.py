@@ -5,7 +5,7 @@ import plotly.express as px
 df = pd.read_excel("data.xlsx", decimal='.')
 
 def gera_grafico(graf):
-    st.header('Registro de Marcar por ano no Estado do '+ graf)
+    st.header('Registro de Marca por ano no Estado do '+ graf)
 
     fig = px.bar(df, x=df['Ano'], y=df[graf],text_auto='.2s')
     fig.update_traces(textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
