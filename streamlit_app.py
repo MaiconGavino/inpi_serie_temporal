@@ -5,13 +5,16 @@ import plotly.express as px
 df = pd.read_excel("data.xlsx", decimal='.')
 
 def gera_grafico(graf):
-    st.dataframe([df[graf],df['Ano']])
-    fig = px.bar(df, x=df["Ano"], y=df[graf],height=400)
+    st.header('Registro de Marcar por ano no Estado do '+ graf)
+
+    fig = px.bar(df, x=df['Ano'], y=df[graf],text_auto='.2s')
+    fig.update_traces(textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
+    fig.update_layout(xaxis_title= 'Anos', yaxis_title = '',xaxis_tickangle=-90)
+    fig.update_yaxes(showticklabels=False)
     st.plotly_chart(fig, use_container_width = False)
     
 
 def main(): 
-    st.dataframe(df)
     page = st.sidebar.selectbox('Selecione o Estado', [x for x in df.columns if x in ["Acre","Alagoas","Amazonas","Amapá","Bahia","Ceará",
                                                                                       "Distrito Federal","Espírito Santo","Goiás","Maranhão", "Minas Gerais",
                                                                                       "Mato Grosso do Sul","Mato Grosso","Pará","Paraíba","Pernambuco",
